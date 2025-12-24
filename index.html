@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Metas Pessoais</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="container">
+        <h1>Minhas Metas</h1>
+        <form id="meta-form">
+            <input type="text" id="meta-nome" placeholder="Nome da meta (ex.: Viagem para Europa)" required>
+            <select id="meta-categoria" required>
+                <option value="pessoal">Pessoal</option>
+                <option value="objetivo">Objetivo</option>
+                <option value="viagem">Viagem</option>
+            </select>
+            <input type="number" id="meta-valor" placeholder="Valor estimado (R$)" required>
+            <input type="date" id="meta-prazo" required>
+            <button type="submit">Adicionar Meta</button>
+        </form>
+        <ul id="lista-metas"></ul>
+    </div>
+
+    <!-- Elementos para Animações -->
+    <div id="fireworks-container"></div>
+    <div id="congrats-modal">
+        <div class="congrats-content">
+            <h2>Parabéns!</h2>
+            <p>Você concluiu a meta:</p>
+            <strong id="completed-goal-name"></strong>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>

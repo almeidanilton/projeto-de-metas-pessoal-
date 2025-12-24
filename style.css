@@ -1,0 +1,288 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap');
+
+:root {
+    --primary-font: 'Poppins', sans-serif;
+    --bg-color: #f8f9fa;
+    --text-color: #343a40;
+    --container-bg: #ffffff;
+    --border-color: #dee2e6;
+    --shadow-color: rgba(0, 0, 0, 0.05);
+
+    --success-color: #28a745;
+    --success-hover: #218838;
+    --danger-color: #dc3545;
+    --info-color: #17a2b8;
+
+    --category-pessoal: #3498db;
+    --category-objetivo: #f1c40f;
+    --category-viagem: #e74c3c;
+    
+    --border-radius: 8px;
+    --transition-speed: 0.3s;
+}
+
+/* --- Estilos Globais --- */
+body {
+    font-family: var(--primary-font);
+    background-color: var(--bg-color);
+    color: var(--text-color);
+    line-height: 1.6;
+    margin: 0;
+    padding: 20px;
+}
+
+.container {
+    max-width: 800px;
+    margin: auto;
+    padding: 0 20px;
+}
+
+h1 {
+    text-align: center;
+    color: var(--text-color);
+    margin-bottom: 1.5rem;
+}
+
+/* --- Formulário de Metas --- */
+#meta-form {
+    display: flex;
+    flex-wrap: wrap; /* Permite que os itens quebrem para a próxima linha */
+    gap: 10px; /* Espaçamento entre os itens */
+    margin-bottom: 2rem;
+}
+
+#meta-form input,
+#meta-form select {
+    flex: 1; /* Permite que os campos cresçam */
+    min-width: 150px; /* Largura mínima para evitar que fiquem muito pequenos */
+    padding: 12px;
+    border: 1px solid var(--border-color);
+    border-radius: var(--border-radius);
+    font-family: var(--primary-font);
+}
+
+#meta-form button {
+    padding: 12px 20px;
+    background-color: var(--success-color);
+    color: white;
+    border: none;
+    border-radius: var(--border-radius);
+    cursor: pointer;
+    font-weight: 600;
+    transition: background-color var(--transition-speed) ease;
+}
+
+#meta-form button:hover {
+    background-color: var(--success-hover);
+}
+
+/* --- Lista de Metas --- */
+#lista-metas {
+    list-style: none;
+    padding: 0;
+}
+
+#lista-metas li {
+    background: var(--container-bg);
+    margin-bottom: 1rem;
+    padding: 1.25rem;
+    border-radius: var(--border-radius);
+    box-shadow: 0 4px 8px var(--shadow-color);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-left: 5px solid #ccc;
+    transition: transform var(--transition-speed) ease, box-shadow var(--transition-speed) ease;
+}
+
+#lista-metas li:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 6px 12px rgba(0,0,0,0.08);
+}
+
+/* Cores por Categoria */
+#lista-metas li.pessoal { border-left-color: var(--category-pessoal); }
+#lista-metas li.objetivo { border-left-color: var(--category-objetivo); }
+#lista-metas li.viagem { border-left-color: var(--category-viagem); }
+
+.goal-info {
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+}
+
+#lista-metas li.completed .goal-info {
+    text-decoration: line-through;
+    opacity: 0.6;
+}
+
+.goal-actions {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.delete-btn, .complete-btn {
+    padding: 8px 12px;
+    color: white;
+    border: none;
+    border-radius: var(--border-radius);
+    cursor: pointer;
+    font-weight: 600;
+    transition: opacity var(--transition-speed) ease;
+}
+
+.delete-btn { background-color: var(--danger-color); }
+.complete-btn { background-color: var(--info-color); }
+
+.delete-btn:hover, .complete-btn:hover {
+    opacity: 0.85;
+}
+
+/* --- Animação Fireworks --- */
+#fireworks-container {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
+    z-index: 9999;
+    display: none;
+}
+
+.firework {
+    position: absolute;
+    width: 5px;
+    height: 5px;
+    background-color: #ffc700;
+    border-radius: 50%;
+    animation: firework-animation 1s ease-out forwards;
+}
+
+@keyframes firework-animation {
+    0% {
+        transform: scale(1);
+        opacity: 1;
+    }
+    100% {
+        transform: translate(var(--x), var(--y)) scale(0);
+        opacity: 0;
+    }
+}
+
+/* --- Responsividade --- */
+
+@media (max-width: 768px) {
+
+    #meta-form {
+
+        flex-direction: column;
+
+    }
+
+
+
+    #lista-metas li {
+
+        flex-direction: column;
+
+        align-items: flex-start;
+
+        gap: 15px;
+
+    }
+
+}
+
+
+
+/* --- Modal de Parabéns --- */
+
+#congrats-modal {
+
+    position: fixed;
+
+    top: 0;
+
+    left: 0;
+
+    width: 100%;
+
+    height: 100%;
+
+    background-color: rgba(0, 0, 0, 0.5);
+
+    display: flex;
+
+    justify-content: center;
+
+    align-items: center;
+
+    z-index: 10000;
+
+    opacity: 0;
+
+    pointer-events: none;
+
+    transition: opacity var(--transition-speed) ease-in-out;
+
+}
+
+
+
+#congrats-modal.visible {
+
+    opacity: 1;
+
+    pointer-events: auto;
+
+}
+
+
+
+.congrats-content {
+
+    background: var(--container-bg);
+
+    padding: 2rem 3rem;
+
+    border-radius: var(--border-radius);
+
+    text-align: center;
+
+    box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+
+    transform: scale(0.8);
+
+    transition: transform var(--transition-speed) ease-in-out;
+
+}
+
+
+
+#congrats-modal.visible .congrats-content {
+
+    transform: scale(1);
+
+}
+
+
+
+.congrats-content h2 {
+
+    color: var(--success-color);
+
+    margin-top: 0;
+
+}
+
+
+
+.congrats-content #completed-goal-name {
+
+    color: var(--primary-font);
+
+    font-weight: 600;
+
+}
